@@ -2,7 +2,7 @@
 set -euo pipefail
 
 echo "Configuring Grub2 for TTY console kernel params"
-sed -i "/GRUB_CMDLINE_LINUX_DEFAULT/s/='/='console=ttyS0 /" /etc/sysconfig/grub2
+sed -i "/GRUB_CMDLINE_LINUX_DEFAULT/s/='/='console=tty0 console=ttyS0,115200n8 /" /etc/sysconfig/grub2
 echo "ttyS0" >> /etc/securetty
 grub-mkconfig -o /boot/grub/grub.cfg
 echo "TTY configured"
