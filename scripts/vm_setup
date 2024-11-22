@@ -81,6 +81,10 @@ main() {
 				${STEP_DIR}/setup_remove_etcnet
 				${STEP_DIR}/setup_minimalize_server_10.1
 				;;
+			'10.2')
+				${STEP_DIR}/setup_remove_etcnet
+				${STEP_DIR}/setup_minimalize_server_10.2
+				;;
 		esac
 		if test "${BASE_VERSION}" == "c10f1"; then
 			${STEP_DIR}/setup_c10f1_repos
