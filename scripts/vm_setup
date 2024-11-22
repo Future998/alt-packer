@@ -131,6 +131,9 @@ main() {
 			'10.1-vmware')
 				${STEP_DIR}/setup_minimalize_server_10.1
 				;;
+			'10.2-vmware')
+				${STEP_DIR}/setup_minimalize_server_10.2
+				;;
 		esac
 		${STEP_DIR}/setup_apt
 		${STEP_DIR}/setup_network_manager_ifcfg
