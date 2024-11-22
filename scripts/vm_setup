@@ -123,6 +123,11 @@ main() {
 		if test "${BASE_VERSION}" == "c10f1-vmware"; then
 			${STEP_DIR}/setup_c10f1_repos
 		fi
+		case "${BASE_VERSION}" in
+			'10.1-vmware')
+				${STEP_DIR}/setup_minimalize_server_10.1
+				;;
+		esac
 		${STEP_DIR}/setup_apt
 		${STEP_DIR}/setup_network_manager_ifcfg
 		${STEP_DIR}/setup_grub2
