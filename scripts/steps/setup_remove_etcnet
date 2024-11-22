@@ -1,0 +1,6 @@
+#!/bin/sh
+set -euo pipefail
+
+echo "Removing etcnet"
+apt-get remove -y -D etcnet
+echo "Done removing etcnet"

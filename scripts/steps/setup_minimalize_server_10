@@ -10,7 +10,6 @@ apt-get remove -y -D \
 	fatresize \
 	firmware-aic94xx-seq \
 	firmware-intel-ucode \
-	firmware-intel-ucode \
 	firmware-ql6312 \
 	fonts-ttf-google-croscore-arimo \
 	fonts-ttf-google-croscore-common \
@@ -54,6 +53,6 @@ apt-get remove -y -D \
 	tcl \
 	usbutils \
 	virtualbox-common \
-	xfsprogs 
+	xfsprogs
 echo "VM minimalized"
 
