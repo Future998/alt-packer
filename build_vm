@@ -134,6 +134,11 @@ main() {
 		mkdir -p images/${IMAGE_FILENAME}
 		mv -f results/${IMAGE_FILENAME}.txt images/manifests/
 		mv -f results/${IMAGE_FILENAME}* images/${IMAGE_FILENAME}/
+
+		# package final ova files
+		./scripts/prepare_ovf "$IMAGE_FILENAME"
+		./scripts/ovf2ova "images/$IMAGE_FILENAME/$IMAGE_FILENAME-efi.ovf"
+		./scripts/ovf2ova "images/$IMAGE_FILENAME/$IMAGE_FILENAME-bios.ovf"
 	else
 		# Add hashes to previously generated manifest and copy it to images dir
 		echo "MD5: $(cat results/${IMAGE_FILENAME}.md5)" >> scripts/build/image-version

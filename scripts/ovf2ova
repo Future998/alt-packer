@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+
+import argparse
+import tarfile
+import xml.etree.ElementTree as ET
+from pathlib import Path
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("source_ovf_filepath")
+    return parser.parse_args()
+
+
+def get_disk(ovf_path: Path):
+    namespaces = {
+        "cim": "http://schemas.dmtf.org/wbem/wscim/1/common",
+        "ovf": "http://schemas.dmtf.org/ovf/envelope/1",
+        "rasd": "http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_ResourceAllocationSettingData",
+        "vmw": "http://www.vmware.com/schema/ovf",
+        "vssd": "http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_VirtualSystemSettingData",
+        "xsi": "http://www.w3.org/2001/XMLSchema-instance",
+        "": "http://schemas.dmtf.org/ovf/envelope/1",
+    }
+
+    for ns, uri in namespaces.items():
+        ET.register_namespace(ns, uri)
+
+    tree = ET.parse(ovf_path)
+    root = tree.getroot()
+    file_entry = root.find(f"References/File", namespaces)
+    if file_entry is None:
+        raise RuntimeError(f"Failed to find vmdk file reference in {ovf_path}")
+
+    disk_file_name = file_entry.attrib.get("href")
+    if disk_file_name is None:
+        raise RuntimeError(f"Failed to find vmdk file href in {ovf_path}")
+
+    return ovf_path.parent.joinpath(disk_file_name)
+
+
+def main():
+    args = parse_args()
+
+    def reset_owner(tarinfo):
+        tarinfo.uid = 64
+        tarinfo.gid = 64
+        tarinfo.uname = "someone"
+        tarinfo.gname = "someone"
+        return tarinfo
+
+    ovf_path = Path(args.source_ovf_filepath)
+    disk_path = get_disk(ovf_path)
+    mf_path = ovf_path.with_suffix(".mf")
+
+    with tarfile.open(ovf_path.with_suffix(".ova"), mode="w", debug=3) as f:
+        f.add(ovf_path, arcname=ovf_path.name, filter=reset_owner)
+        f.add(mf_path, arcname=mf_path.name, filter=reset_owner)
+        f.add(disk_path, arcname=disk_path.name, filter=reset_owner)
+
+
+if __name__ == "__main__":
+    main()
