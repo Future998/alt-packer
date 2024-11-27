@@ -9,7 +9,7 @@
     "boot_finish_cmd": "<wait><enter>initrd /boot/initrd.img<enter>boot<enter>",
     "metadata": "alt-server-10.1-vmware-x86_64",
     "descr": "ALT Linux Server 10.1 x86_64",
-    "disk_size": "10240",
+    "disk_size": "5120",
     "image_version": "1.0.0",
     "with_cloudinit": "1",
     "with_sisyphus": "0"

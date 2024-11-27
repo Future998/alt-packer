@@ -6,7 +6,8 @@
                ; Calculating: disk_size (M) * 1024 * 2
                ; 10 MiB (for BIOS boot partition)
                ("" (size 20480 . 20480) (methods plain))
-               ; The rest. Minimum 7 GiB
-               ("/" (size 14680064 . #t) (fsim . "Ext2/3") (methods plain))
+               ; The rest.
+               ; 3.7 (GiB) * 1024 * 1024 * 2
+               ("/" (size 7759463 . #t) (fsim . "Ext2/3") (methods plain))
                )))
 
