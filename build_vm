@@ -99,7 +99,7 @@ main() {
 	# Clean previously generated hashes
 	rm -rf results/${IMAGE_FILENAME}.md5
 	rm -rf results/${IMAGE_FILENAME}.sha1
-	
+
 	# Run packer binary
 	env \
 		PACKER_CACHE_DIR="${PACKER_CACHE_DIR}" \
@@ -125,7 +125,7 @@ main() {
 		PACKER_OPENUDS_ACTOR_POST_CONFIG="${OPENUDS_ACTOR_POST_CONFIG}" \
 		PACKER_OPENUDS_ACTOR_LOG_LEVEL="${OPENUDS_ACTOR_LOG_LEVEL}" \
 		${build_command} -force -var-file=config/${target}-${BASE_VERSION}-${arch}.json -only=${VM_TYPE}-vm build.json
-	
+
 	if test "${VM_TYPE}" == "vsphere"; then
 		cp -rf scripts/build/image-version results/${IMAGE_FILENAME}.txt
 
