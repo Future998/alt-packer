@@ -1,0 +1,15 @@
+{
+    "iso_url": "http://ftp.altlinux.org/pub/distributions/ALTLinux/p10/images/workstation/x86_64/alt-workstation-10.2-x86_64.iso",
+    "iso_target_path": "alt-workstation-10.2-x86_64.iso",
+    "iso_checksum": "5ad8a1e6472950d2bbf63d9981d043b5",
+    "iso_checksum_type": "md5",
+    "boot_escape_cmd": "c",
+    "boot_cmd": "linux /boot/vmlinuz showopts net.ifnames=0 selinux=0 changedisk automatic=method:cdrom lowmem",
+    "boot_finish_cmd": "<wait><enter>initrd /boot/initrd.img<enter>boot<enter>",
+    "metadata": "alt-workstation-10-x86_64",
+    "descr": "ALT Linux Workstation 10.2 x86_64",
+    "image_version": "1.0.0",
+    "with_cloudinit": "1",
+    "with_sisyphus": "0"
+}
+

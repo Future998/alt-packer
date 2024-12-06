@@ -83,7 +83,11 @@ main() {
 				;;
 			'10.2')
 				${STEP_DIR}/setup_remove_etcnet
-				${STEP_DIR}/setup_minimalize_server_10.2
+				if test "${TARGET}" == "alt-workstation"; then
+					${STEP_DIR}/setup_minimalize_workstation_10.2
+				else
+					${STEP_DIR}/setup_minimalize_server_10.2
+				fi
 				;;
 		esac
 		if test "${BASE_VERSION}" == "c10f1"; then
