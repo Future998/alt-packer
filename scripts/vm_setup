@@ -48,6 +48,7 @@ main() {
 			${STEP_DIR}/setup_cloudinit
 		fi
 		${STEP_DIR}/setup_agent
+		# TODO: fix the network (it's not working now)
 		${STEP_DIR}/setup_network
 		${STEP_DIR}/setup_root
 		${STEP_DIR}/setup_test_user

@@ -34,3 +34,7 @@ echo "Clear journalctl logs"
 
 journalctl --rotate
 journalctl --vacuum-time=1s
+
+# echo "Setup network"
+
+apt-get -y install cloud-init-config-network-manager
